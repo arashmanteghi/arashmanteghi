@@ -21,7 +21,7 @@ const gh = async (path, body) => {
   return json;
 };
 
-const query = `query($login:String!){user(login:$login){
+const query = `query($login:String!,$since:GitTimestamp!){user(login:$login){
   login name bio company location websiteUrl twitterUsername createdAt
   followers{totalCount} following{totalCount}
   socialAccounts(first:10){nodes{provider url}}
@@ -30,6 +30,9 @@ const query = `query($login:String!){user(login:$login){
     nodes{name description url stargazerCount forkCount pushedAt
       primaryLanguage{name color}
       languages(first:10,orderBy:{field:SIZE,direction:DESC}){edges{size node{name color}}}}}
+  active:repositories(first:20,ownerAffiliations:OWNER,privacy:PUBLIC,orderBy:{field:PUSHED_AT,direction:DESC}){
+    nodes{name pushedAt primaryLanguage{name}
+      defaultBranchRef{target{... on Commit{history(since:$since){totalCount}}}}}}
   contributionsCollection{
     totalCommitContributions totalPullRequestContributions totalIssueContributions
     totalPullRequestReviewContributions restrictedContributionsCount
@@ -210,49 +213,30 @@ ${lang ? `<circle cx="${x + 21}" cy="${y + 72}" r="5" fill="${lang.color || '#8b
 ${cards}`, 'Top projects');
 };
 
-const EVENT = {
-  PushEvent: () => 'push',
-  PullRequestEvent: (e) => `pr ${e.payload.action}`,
-  IssuesEvent: (e) => `issue ${e.payload.action}`,
-  CreateEvent: (e) => `new ${e.payload.ref_type}`,
-  ReleaseEvent: () => 'release',
-  WatchEvent: () => 'starred',
-  ForkEvent: () => 'forked',
-  PullRequestReviewEvent: () => 'review',
-};
 
-const log = (events) => {
-  // one row per repo, most recently active first (events arrive newest first), with a tally of what happened
-  const byRepo = new Map();
-  for (const e of events) {
-    if (!EVENT[e.type]) continue;
-    const r = byRepo.get(e.repo.name) || { date: e.created_at, kinds: new Map() };
-    const kind = EVENT[e.type](e);
-    r.kinds.set(kind, (r.kinds.get(kind) || 0) + 1);
-    byRepo.set(e.repo.name, r);
-  }
-  const rows = [...byRepo].slice(0, 10);
+const commits = (r) => r.defaultBranchRef?.target?.history?.totalCount ?? 0;
+
+// Own public repos with commits in the last 12 months, most recently pushed first.
+const log = (u) => {
+  const rows = u.active.nodes.filter((r) => r.name !== u.login && commits(r) > 0).slice(0, 8);
   const lines = rows.length
     ? rows
-        .map(([repo, { date, kinds }], i) => {
-          const tally = [...kinds].map(([k, n]) => (n > 1 ? `${n}× ${k}` : k)).join(' · ');
-          return `<text x="24" y="${82 + i * 24}" font-size="13" class="fade" style="animation-delay:${i * 0.1}s"><tspan class="m">${date.slice(0, 10)}</tspan>  ${esc(cut(repo, 36).padEnd(38))}<tspan class="acc">${esc(cut(tally, 50))}</tspan></text>`;
+        .map((r, i) => {
+          const n = commits(r);
+          return `<text x="24" y="${82 + i * 24}" font-size="13" class="fade" style="animation-delay:${i * 0.1}s"><tspan class="m">${r.pushedAt.slice(0, 10)}</tspan>  <tspan>${esc(cut(r.name, 36).padEnd(38))}</tspan><tspan class="m">${esc((r.primaryLanguage?.name || '').padEnd(14))}</tspan><tspan class="acc">${n} commit${n === 1 ? '' : 's'}</tspan></text>`;
         })
         .join('\n')
     : `<text x="24" y="82" font-size="13" class="m">quiet lately…</text>`;
-  return svg(70 + Math.max(1, rows.length) * 24, `${section(5, 'log · activity across repositories')}
-${lines}`, 'Recent activity');
+  return svg(70 + Math.max(1, rows.length) * 24, `${section(5, 'log · public repos · last 12 months')}
+${lines}`, 'Recent activity across my repositories');
 };
 
 const footer = () =>
   svg(44, `<text x="${W / 2}" y="26" font-size="11" class="m" text-anchor="middle">auto-synced ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · built by a GitHub Action from live data</text>`, 'Last sync');
 
 // ---------- main ----------
-const [{ data }, events] = await Promise.all([
-  gh('graphql', { query, variables: { login: LOGIN } }),
-  // the API keeps at most 300 public events (~90 days)
-  Promise.all([1, 2, 3].map((p) => gh(`users/${LOGIN}/events/public?per_page=100&page=${p}`))).then((pages) => pages.flat()),
-]);
+const since = new Date(Date.now() - 365 * 864e5).toISOString();
+const { data } = await gh('graphql', { query, variables: { login: LOGIN, since } });
 const u = data.user;
 if (!u) throw new Error(`user ${LOGIN} not found`);
 
@@ -262,7 +246,7 @@ const out = {
   telemetry: telemetry(u),
   activity: activity(u),
   projects: projects(u),
-  log: log(events),
+  log: log(u),
   footer: footer(),
 };
 await mkdir('assets', { recursive: true });

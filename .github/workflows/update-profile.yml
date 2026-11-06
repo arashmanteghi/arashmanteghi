@@ -26,7 +26,7 @@ jobs:
       - name: Generate SVGs
         run: node scripts/generate.mjs
         env:
-          # Optional PAT secret (read:user) also counts private contributions; falls back to the built-in token.
+          # Optional PAT secret (read:user) also counts private contributions in the totals; falls back to the built-in token.
           GITHUB_TOKEN: ${{ secrets.PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
       - name: Commit changes
         run: |
