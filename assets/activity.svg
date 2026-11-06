@@ -66,7 +66,7 @@ text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
 <rect x="759.0" y="148" width="12.0" height="48" rx="1.5" fill="var(--fg)" opacity="0.61" class="fade" style="animation-delay:0.73s"/>
 <rect x="774.0" y="169.6" width="12.0" height="26.4" rx="1.5" fill="var(--fg)" opacity="0.493" class="fade" style="animation-delay:0.75s"/>
 <rect x="789.0" y="164.8" width="12.0" height="31.200000000000003" rx="1.5" fill="var(--fg)" opacity="0.519" class="fade" style="animation-delay:0.77s"/>
-<rect x="804.0" y="152.8" width="12.0" height="43.199999999999996" rx="1.5" fill="var(--fg)" opacity="0.584" class="fade" style="animation-delay:0.78s"/>
+<rect x="804.0" y="140.8" width="12.0" height="55.2" rx="1.5" fill="var(--fg)" opacity="0.649" class="fade" style="animation-delay:0.78s"/>
 <text x="24" y="218" font-size="11" class="m">2025-11-02</text>
 <text x="816" y="218" font-size="11" class="m" text-anchor="end">today</text>
 </svg>
