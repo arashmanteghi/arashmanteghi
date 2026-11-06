@@ -32,11 +32,7 @@ const query = `query($login:String!,$since:GitTimestamp!){user(login:$login){
       languages(first:10,orderBy:{field:SIZE,direction:DESC}){edges{size node{name color}}}}}
   active:repositories(first:20,ownerAffiliations:OWNER,privacy:PUBLIC,orderBy:{field:PUSHED_AT,direction:DESC}){
     nodes{name pushedAt primaryLanguage{name}
-      defaultBranchRef{target{... on Commit{history(since:$since){totalCount}}}}}}
-  contributionsCollection{
-    totalCommitContributions totalPullRequestContributions totalIssueContributions
-    totalPullRequestReviewContributions restrictedContributionsCount
-    contributionCalendar{totalContributions weeks{contributionDays{contributionCount date}}}}}}`;
+      defaultBranchRef{target{... on Commit{history(since:$since){totalCount}}}}}}}}`;
 
 // ---------- helpers ----------
 const esc = (s = '') =>
@@ -111,15 +107,17 @@ const whoami = (u) => {
 ${lines}`, 'About me');
 };
 
-const telemetry = (u) => {
-  const c = u.contributionsCollection;
+// Contribution tiles come from the profile graph so they include private work; the API can't split that by type.
+const telemetry = (u, { days }) => {
   const repos = u.repositories.nodes;
   const stars = repos.reduce((s, r) => s + r.stargazerCount, 0);
+  let streak = 0, longest = 0;
+  for (const { count } of days) longest = Math.max(longest, (streak = count ? streak + 1 : 0));
   const tiles = [
-    ['contributions', c.contributionCalendar.totalContributions + c.restrictedContributionsCount],
-    ['commits', c.totalCommitContributions],
-    ['pull requests', c.totalPullRequestContributions],
-    ['reviews', c.totalPullRequestReviewContributions],
+    ['contributions', days.reduce((s, d) => s + d.count, 0)],
+    ['active days', days.filter((d) => d.count).length],
+    ['longest streak', longest],
+    ['best day', Math.max(0, ...days.map((d) => d.count))],
     ['stars earned', stars],
     ['public repos', u.repositories.totalCount],
   ];
@@ -188,7 +186,7 @@ const profileCalendar = async (login) => {
     const key = new Date(d - d.getUTCDay() * 864e5).toISOString().slice(0, 10);
     weeks.set(key, (weeks.get(key) || 0) + count);
   }
-  return { first: days[0].date, weeks: [...weeks.values()] };
+  return { days, first: days[0].date, weeks: [...weeks.values()] };
 };
 
 const activity = ({ first, weeks }) => {
@@ -265,7 +263,7 @@ if (!u) throw new Error(`user ${LOGIN} not found`);
 const out = {
   header: header(u),
   whoami: whoami(u),
-  telemetry: telemetry(u),
+  telemetry: telemetry(u, calendar),
   activity: activity(calendar),
   projects: projects(u),
   log: log(u),
