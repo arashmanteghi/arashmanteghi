@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="368" viewBox="0 0 840 368" role="img" aria-label="About me">
+<style>
+svg{--fg:#1f2328;--mute:#656d76;--line:#d0d7de;--soft:#f6f8fa;--acc:#1a7f37}
+@media (prefers-color-scheme:dark){svg{--fg:#e6edf3;--mute:#8b949e;--line:#30363d;--soft:#161b22;--acc:#3fb950}}
+text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:var(--fg);white-space:pre}
+.m{fill:var(--mute)}.b{font-weight:700}.acc{fill:var(--acc)}
+.box{fill:none;stroke:var(--line)}
+.fade{animation:in .6s ease backwards}
+@keyframes in{from{opacity:0}}
+@keyframes blink{50%{opacity:0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important}}
+</style>
+<text x="24" y="34" font-size="13" class="m">01 ── <tspan class="b" style="fill:var(--fg)">whoami</tspan></text>
+<line x1="24" y1="48" x2="816" y2="48" stroke="var(--line)"/>
+<text x="24" y="76" font-size="14"><tspan class="acc">➜</tspan> <tspan class="m">whoami --verbose</tspan></text>
+<text x="40" y="100" font-size="14" class="fade" style="animation-delay:0s"><tspan class="m">name      </tspan>Arash Manteghi</text>
+<text x="40" y="124" font-size="14" class="fade" style="animation-delay:0.12s"><tspan class="m">role      </tspan>Software Developer</text>
+<text x="40" y="148" font-size="14" class="fade" style="animation-delay:0.24s"><tspan class="m">company   </tspan>@gutro</text>
+<text x="40" y="172" font-size="14" class="fade" style="animation-delay:0.36s"><tspan class="m">location  </tspan>Stockholm, Sweden</text>
+<text x="40" y="196" font-size="14" class="fade" style="animation-delay:0.48s"><tspan class="m">web       </tspan>arashm.net</text>
+<text x="40" y="220" font-size="14" class="fade" style="animation-delay:0.6s"><tspan class="m">x         </tspan>@arashmanteghi</text>
+<text x="40" y="244" font-size="14" class="fade" style="animation-delay:0.72s"><tspan class="m">linkedin  </tspan>linkedin.com/in/arashmanteghi</text>
+<text x="40" y="268" font-size="14" class="fade" style="animation-delay:0.84s"><tspan class="m">codepen   </tspan>codepen.io/arashmanteghi</text>
+<text x="40" y="292" font-size="14" class="fade" style="animation-delay:0.96s"><tspan class="m">hashnode  </tspan>arashmanteghi.hashnode.dev</text>
+<text x="40" y="316" font-size="14" class="fade" style="animation-delay:1.08s"><tspan class="m">since     </tspan>2013-08-19 (13y ago)</text>
+<text x="40" y="340" font-size="14" class="fade" style="animation-delay:1.2s"><tspan class="m">network   </tspan>53 followers · 26 following</text>
+</svg>

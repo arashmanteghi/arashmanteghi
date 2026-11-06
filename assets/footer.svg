@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="44" viewBox="0 0 840 44" role="img" aria-label="Last sync">
+<style>
+svg{--fg:#1f2328;--mute:#656d76;--line:#d0d7de;--soft:#f6f8fa;--acc:#1a7f37}
+@media (prefers-color-scheme:dark){svg{--fg:#e6edf3;--mute:#8b949e;--line:#30363d;--soft:#161b22;--acc:#3fb950}}
+text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:var(--fg);white-space:pre}
+.m{fill:var(--mute)}.b{font-weight:700}.acc{fill:var(--acc)}
+.box{fill:none;stroke:var(--line)}
+.fade{animation:in .6s ease backwards}
+@keyframes in{from{opacity:0}}
+@keyframes blink{50%{opacity:0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important}}
+</style>
+<text x="420" y="26" font-size="11" class="m" text-anchor="middle">auto-synced 2026-11-06 14:12 UTC · built by a GitHub Action from live data</text>
+</svg>

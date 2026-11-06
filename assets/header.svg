@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="190" viewBox="0 0 840 190" role="img" aria-label="Arash Manteghi — Software Developer">
+<style>
+svg{--fg:#1f2328;--mute:#656d76;--line:#d0d7de;--soft:#f6f8fa;--acc:#1a7f37}
+@media (prefers-color-scheme:dark){svg{--fg:#e6edf3;--mute:#8b949e;--line:#30363d;--soft:#161b22;--acc:#3fb950}}
+text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:var(--fg);white-space:pre}
+.m{fill:var(--mute)}.b{font-weight:700}.acc{fill:var(--acc)}
+.box{fill:none;stroke:var(--line)}
+.fade{animation:in .6s ease backwards}
+@keyframes in{from{opacity:0}}
+@keyframes blink{50%{opacity:0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important}}
+</style>
+
+<rect class="box" x="0.5" y="0.5" width="839" height="189" rx="10"/>
+<circle cx="28" cy="26" r="5" fill="#ff5f57"/><circle cx="46" cy="26" r="5" fill="#febc2e"/><circle cx="64" cy="26" r="5" fill="#28c840"/>
+<text x="420" y="30" font-size="12" class="m" text-anchor="middle">~/arashmanteghi</text>
+<text x="32" y="82" font-size="15" class="m">$ echo $USER</text>
+<text x="32" y="122" font-size="34" class="b">Arash Manteghi<tspan class="acc" style="animation:blink 1s step-end infinite">_</tspan></text>
+<text x="32" y="156" font-size="15" class="m">Software Developer</text>
+<circle cx="690" cy="152" r="4" class="acc" style="animation:pulse 2s ease-in-out infinite"/>
+<text x="700" y="156" font-size="12" class="m">13y on github</text>
+</svg>

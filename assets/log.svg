@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="190" viewBox="0 0 840 190" role="img" aria-label="Recent activity">
+<style>
+svg{--fg:#1f2328;--mute:#656d76;--line:#d0d7de;--soft:#f6f8fa;--acc:#1a7f37}
+@media (prefers-color-scheme:dark){svg{--fg:#e6edf3;--mute:#8b949e;--line:#30363d;--soft:#161b22;--acc:#3fb950}}
+text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:var(--fg);white-space:pre}
+.m{fill:var(--mute)}.b{font-weight:700}.acc{fill:var(--acc)}
+.box{fill:none;stroke:var(--line)}
+.fade{animation:in .6s ease backwards}
+@keyframes in{from{opacity:0}}
+@keyframes blink{50%{opacity:0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important}}
+</style>
+<text x="24" y="34" font-size="13" class="m">05 ── <tspan class="b" style="fill:var(--fg)">log · activity across repositories</tspan></text>
+<line x1="24" y1="48" x2="816" y2="48" stroke="var(--line)"/>
+<text x="24" y="82" font-size="13" class="fade" style="animation-delay:0s"><tspan class="m">2026-11-06</tspan>  arashmanteghi/git-helper              <tspan class="acc">4× pr merged · 4× pr opened · 2× push · new branch</tspan></text>
+<text x="24" y="106" font-size="13" class="fade" style="animation-delay:0.1s"><tspan class="m">2026-10-21</tspan>  Jeffallan/claude-skills               <tspan class="acc">starred</tspan></text>
+<text x="24" y="130" font-size="13" class="fade" style="animation-delay:0.2s"><tspan class="m">2026-10-21</tspan>  mattpocock/skills                     <tspan class="acc">starred</tspan></text>
+<text x="24" y="154" font-size="13" class="fade" style="animation-delay:0.30000000000000004s"><tspan class="m">2026-10-21</tspan>  multica-ai/andrej-karpathy-skills     <tspan class="acc">starred</tspan></text>
+<text x="24" y="178" font-size="13" class="fade" style="animation-delay:0.4s"><tspan class="m">2026-10-21</tspan>  DietrichGebert/ponytail               <tspan class="acc">starred</tspan></text>
+</svg>
