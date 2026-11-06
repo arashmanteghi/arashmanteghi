@@ -14,10 +14,10 @@ text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
 <text x="24" y="34" font-size="13" class="m">02 ── <tspan class="b" style="fill:var(--fg)">telemetry · last 12 months</tspan></text>
 <line x1="24" y1="48" x2="816" y2="48" stroke="var(--line)"/>
 <g class="fade" style="animation-delay:0s"><rect x="24" y="66" width="122" height="76" rx="8" fill="var(--soft)" stroke="var(--line)"/>
-<text x="38" y="104" font-size="24" class="b">81</text>
+<text x="38" y="104" font-size="24" class="b">83</text>
 <text x="38" y="128" font-size="11" class="m">contributions</text></g>
 <g class="fade" style="animation-delay:0.1s"><rect x="158" y="66" width="122" height="76" rx="8" fill="var(--soft)" stroke="var(--line)"/>
-<text x="172" y="104" font-size="24" class="b">20</text>
+<text x="172" y="104" font-size="24" class="b">22</text>
 <text x="172" y="128" font-size="11" class="m">commits</text></g>
 <g class="fade" style="animation-delay:0.2s"><rect x="292" y="66" width="122" height="76" rx="8" fill="var(--soft)" stroke="var(--line)"/>
 <text x="306" y="104" font-size="24" class="b">4</text>
@@ -34,10 +34,10 @@ text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
 <text x="24" y="166" font-size="12" class="m">languages across 10 repos</text>
 <clipPath id="r"><rect x="24" y="178" width="792" height="10" rx="5"/></clipPath>
 <rect x="24" y="178" width="792" height="10" rx="5" fill="var(--soft)"/>
-<g clip-path="url(#r)"><rect x="24" y="178" width="393.2622968332698" height="10" fill="#f1e05a"><animate attributeName="width" from="0" to="393.2622968332698" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect><rect x="417.2622968332698" y="178" width="184.74963754292256" height="10" fill="#663399"><animate attributeName="width" from="0" to="184.74963754292256" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect><rect x="602.0119343761924" y="178" width="159.4515681037772" height="10" fill="#3178c6"><animate attributeName="width" from="0" to="159.4515681037772" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect><rect x="761.4635024799695" y="178" width="50.958748569248385" height="10" fill="#e34c26"><animate attributeName="width" from="0" to="50.958748569248385" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect><rect x="812.422251049218" y="178" width="3.5777489507821443" height="10" fill="#384d54"><animate attributeName="width" from="0" to="3.5777489507821443" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect></g>
-<circle cx="29" cy="210" r="5" fill="#f1e05a"/><text x="40" y="214" font-size="12">JavaScript <tspan class="m">49.7%</tspan></text>
-<circle cx="299" cy="210" r="5" fill="#663399"/><text x="310" y="214" font-size="12">CSS <tspan class="m">23.3%</tspan></text>
-<circle cx="569" cy="210" r="5" fill="#3178c6"/><text x="580" y="214" font-size="12">TypeScript <tspan class="m">20.1%</tspan></text>
-<circle cx="29" cy="232" r="5" fill="#e34c26"/><text x="40" y="236" font-size="12">HTML <tspan class="m">6.4%</tspan></text>
-<circle cx="299" cy="232" r="5" fill="#384d54"/><text x="310" y="236" font-size="12">Dockerfile <tspan class="m">0.5%</tspan></text>
+<g clip-path="url(#r)"><rect x="24" y="178" width="429.91808310871204" height="10" fill="#f1e05a"><animate attributeName="width" from="0" to="429.91808310871204" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect><rect x="453.91808310871204" y="178" width="167.76568249062828" height="10" fill="#663399"><animate attributeName="width" from="0" to="167.76568249062828" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect><rect x="621.6837655993403" y="178" width="144.79325374003062" height="10" fill="#3178c6"><animate attributeName="width" from="0" to="144.79325374003062" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect><rect x="766.4770193393709" y="178" width="46.27413263856649" height="10" fill="#e34c26"><animate attributeName="width" from="0" to="46.27413263856649" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect><rect x="812.7511519779374" y="178" width="3.248848022062543" height="10" fill="#384d54"><animate attributeName="width" from="0" to="3.248848022062543" dur="1s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect></g>
+<circle cx="29" cy="210" r="5" fill="#f1e05a"/><text x="40" y="214" font-size="12">JavaScript <tspan class="m">54.3%</tspan></text>
+<circle cx="299" cy="210" r="5" fill="#663399"/><text x="310" y="214" font-size="12">CSS <tspan class="m">21.2%</tspan></text>
+<circle cx="569" cy="210" r="5" fill="#3178c6"/><text x="580" y="214" font-size="12">TypeScript <tspan class="m">18.3%</tspan></text>
+<circle cx="29" cy="232" r="5" fill="#e34c26"/><text x="40" y="236" font-size="12">HTML <tspan class="m">5.8%</tspan></text>
+<circle cx="299" cy="232" r="5" fill="#384d54"/><text x="310" y="236" font-size="12">Dockerfile <tspan class="m">0.4%</tspan></text>
 </svg>

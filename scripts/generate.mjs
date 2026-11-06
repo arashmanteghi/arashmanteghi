@@ -169,9 +169,29 @@ ${tileSvg}
 ${legend}`, 'GitHub statistics and languages');
 };
 
-const activity = (u) => {
-  const weeks = u.contributionsCollection.contributionCalendar.weeks.map((w) =>
-    w.contributionDays.reduce((s, d) => s + d.contributionCount, 0));
+// Daily counts from the public profile graph, which includes private contributions the API leaves out.
+// shortcut: parses undocumented HTML, update the regexes if GitHub changes the graph markup.
+const profileCalendar = async (login) => {
+  const res = await fetch(`https://github.com/users/${login}/contributions`, { headers: { 'User-Agent': 'profile-readme-generator' } });
+  if (!res.ok) throw new Error(`contributions page: ${res.status}`);
+  const html = await res.text();
+  const dates = new Map([...html.matchAll(/data-date="([\d-]+)" id="([^"]+)"/g)].map(([, date, id]) => [id, date]));
+  const days = [...html.matchAll(/<tool-tip[^>]*for="([^"]+)"[^>]*>(\d+|No) contribution/g)]
+    .map(([, id, n]) => ({ date: dates.get(id), count: n === 'No' ? 0 : Number(n) }))
+    .filter((d) => d.date)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  if (days.length < 300) throw new Error(`contributions page: parsed only ${days.length} days, markup changed?`);
+  // group into Sunday-start weeks, like the profile graph
+  const weeks = new Map();
+  for (const { date, count } of days) {
+    const d = new Date(`${date}T00:00:00Z`);
+    const key = new Date(d - d.getUTCDay() * 864e5).toISOString().slice(0, 10);
+    weeks.set(key, (weeks.get(key) || 0) + count);
+  }
+  return { first: days[0].date, weeks: [...weeks.values()] };
+};
+
+const activity = ({ first, weeks }) => {
   const max = Math.max(1, ...weeks);
   const chartH = 120, base = 196, gap = 3;
   const bw = (W - 48 - gap * (weeks.length - 1)) / weeks.length;
@@ -181,7 +201,6 @@ const activity = (u) => {
       return `<rect x="${(24 + i * (bw + gap)).toFixed(1)}" y="${base - h}" width="${bw.toFixed(1)}" height="${h}" rx="1.5" fill="var(--fg)" opacity="${v ? 0.35 + 0.65 * (v / max) : 0.12}" class="fade" style="animation-delay:${(i * 0.015).toFixed(2)}s"/>`;
     })
     .join('\n');
-  const first = u.contributionsCollection.contributionCalendar.weeks[0].contributionDays[0].date;
   return svg(230, `${section(3, 'activity · weekly contributions')}
 <text x="${W - 24}" y="34" font-size="12" class="m" text-anchor="end">peak ${max}/week</text>
 ${bars}
@@ -236,7 +255,10 @@ const footer = () =>
 
 // ---------- main ----------
 const since = new Date(Date.now() - 365 * 864e5).toISOString();
-const { data } = await gh('graphql', { query, variables: { login: LOGIN, since } });
+const [{ data }, calendar] = await Promise.all([
+  gh('graphql', { query, variables: { login: LOGIN, since } }),
+  profileCalendar(LOGIN),
+]);
 const u = data.user;
 if (!u) throw new Error(`user ${LOGIN} not found`);
 
@@ -244,7 +266,7 @@ const out = {
   header: header(u),
   whoami: whoami(u),
   telemetry: telemetry(u),
-  activity: activity(u),
+  activity: activity(calendar),
   projects: projects(u),
   log: log(u),
   footer: footer(),
