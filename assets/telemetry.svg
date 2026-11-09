@@ -17,7 +17,7 @@ text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
 <text x="38" y="104" font-size="24" class="b">707</text>
 <text x="38" y="128" font-size="11" class="m">contributions</text></g>
 <g class="fade" style="animation-delay:0.1s"><rect x="158" y="66" width="122" height="76" rx="8" fill="var(--soft)" stroke="var(--line)"/>
-<text x="172" y="104" font-size="24" class="b">175</text>
+<text x="172" y="104" font-size="24" class="b">176</text>
 <text x="172" y="128" font-size="11" class="m">active days</text></g>
 <g class="fade" style="animation-delay:0.2s"><rect x="292" y="66" width="122" height="76" rx="8" fill="var(--soft)" stroke="var(--line)"/>
 <text x="306" y="104" font-size="24" class="b">7</text>
